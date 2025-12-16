@@ -1,0 +1,453 @@
+Initializing ANN...
+Loading training data...
+Loading 5923 samples for digit 0
+Loading 6742 samples for digit 1
+Loading 5958 samples for digit 2
+Loading 6131 samples for digit 3
+Loading 5842 samples for digit 4
+Loading 5421 samples for digit 5
+Loading 5918 samples for digit 6
+Loading 6265 samples for digit 7
+Loading 5851 samples for digit 8
+Loading 5949 samples for digit 9
+Training...
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.435 seconds.
+7435 ms per epoch, Sum: 74.35 s, Actually sum: 7.435, Need: 66.915 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.645 seconds.
+7645 ms per epoch, Sum: 76.45 s, Actually sum: 15.08, Need: 61.16 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.381 seconds.
+7381 ms per epoch, Sum: 73.81 s, Actually sum: 22.461, Need: 51.667 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.339 seconds.
+7339 ms per epoch, Sum: 73.39 s, Actually sum: 29.8, Need: 44.034 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.343 seconds.
+7343 ms per epoch, Sum: 73.43 s, Actually sum: 37.143, Need: 36.715 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.326 seconds.
+7326 ms per epoch, Sum: 73.26 s, Actually sum: 44.469, Need: 29.304 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.324 seconds.
+7324 ms per epoch, Sum: 73.24 s, Actually sum: 51.793, Need: 21.972 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.336 seconds.
+7336 ms per epoch, Sum: 73.36 s, Actually sum: 59.129, Need: 14.672 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.332 seconds.
+7332 ms per epoch, Sum: 73.32 s, Actually sum: 66.461, Need: 7.332 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.345 seconds.
+7345 ms per epoch, Sum: 73.45 s, Actually sum: 73.806, Need: 0 s.
+
+
+sum = 10
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.349 seconds.
+7349 ms per epoch, Sum: 73.49 s, Actually sum: 7.349, Need: 66.141 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.328 seconds.
+7328 ms per epoch, Sum: 73.28 s, Actually sum: 14.677, Need: 58.624 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.329 seconds.
+7329 ms per epoch, Sum: 73.29 s, Actually sum: 22.006, Need: 51.303 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.325 seconds.
+7325 ms per epoch, Sum: 73.25 s, Actually sum: 29.331, Need: 43.95 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.32 seconds.
+7320 ms per epoch, Sum: 73.2 s, Actually sum: 36.651, Need: 36.6 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.321 seconds.
+7321 ms per epoch, Sum: 73.21 s, Actually sum: 43.972, Need: 29.284 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.323 seconds.
+7323 ms per epoch, Sum: 73.23 s, Actually sum: 51.295, Need: 21.969 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.328 seconds.
+7328 ms per epoch, Sum: 73.28 s, Actually sum: 58.623, Need: 14.656 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.328 seconds.
+7328 ms per epoch, Sum: 73.28 s, Actually sum: 65.951, Need: 7.328 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.33 seconds.
+7330 ms per epoch, Sum: 73.3 s, Actually sum: 73.281, Need: 0 s.
+
+
+sum = 20
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.391 seconds.
+7391 ms per epoch, Sum: 73.91 s, Actually sum: 7.391, Need: 66.519 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.315 seconds.
+7315 ms per epoch, Sum: 73.15 s, Actually sum: 14.706, Need: 58.52 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.32 seconds.
+7320 ms per epoch, Sum: 73.2 s, Actually sum: 22.026, Need: 51.24 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.344 seconds.
+7344 ms per epoch, Sum: 73.44 s, Actually sum: 29.37, Need: 44.064 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.315 seconds.
+7315 ms per epoch, Sum: 73.15 s, Actually sum: 36.685, Need: 36.575 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.316 seconds.
+7316 ms per epoch, Sum: 73.16 s, Actually sum: 44.001, Need: 29.264 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.326 seconds.
+7326 ms per epoch, Sum: 73.26 s, Actually sum: 51.327, Need: 21.978 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.33 seconds.
+7330 ms per epoch, Sum: 73.3 s, Actually sum: 58.657, Need: 14.66 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.352 seconds.
+7352 ms per epoch, Sum: 73.52 s, Actually sum: 66.009, Need: 7.352 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.336 seconds.
+7336 ms per epoch, Sum: 73.36 s, Actually sum: 73.345, Need: 0 s.
+
+
+sum = 30
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.379 seconds.
+7379 ms per epoch, Sum: 73.79 s, Actually sum: 7.379, Need: 66.411 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.33 seconds.
+7330 ms per epoch, Sum: 73.3 s, Actually sum: 14.709, Need: 58.64 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.336 seconds.
+7336 ms per epoch, Sum: 73.36 s, Actually sum: 22.045, Need: 51.352 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.317 seconds.
+7317 ms per epoch, Sum: 73.17 s, Actually sum: 29.362, Need: 43.902 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.324 seconds.
+7324 ms per epoch, Sum: 73.24 s, Actually sum: 36.686, Need: 36.62 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.315 seconds.
+7315 ms per epoch, Sum: 73.15 s, Actually sum: 44.001, Need: 29.26 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.323 seconds.
+7323 ms per epoch, Sum: 73.23 s, Actually sum: 51.325, Need: 21.969 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.444 seconds.
+7444 ms per epoch, Sum: 74.44 s, Actually sum: 58.769, Need: 14.888 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.332 seconds.
+7332 ms per epoch, Sum: 73.32 s, Actually sum: 66.101, Need: 7.332 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.427 seconds.
+7427 ms per epoch, Sum: 74.27 s, Actually sum: 73.528, Need: 0 s.
+
+
+sum = 40
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.474 seconds.
+7474 ms per epoch, Sum: 74.74 s, Actually sum: 7.474, Need: 67.266 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.353 seconds.
+7353 ms per epoch, Sum: 73.53 s, Actually sum: 14.827, Need: 58.824 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.333 seconds.
+7333 ms per epoch, Sum: 73.33 s, Actually sum: 22.16, Need: 51.331 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.337 seconds.
+7337 ms per epoch, Sum: 73.37 s, Actually sum: 29.497, Need: 44.022 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.347 seconds.
+7347 ms per epoch, Sum: 73.47 s, Actually sum: 36.844, Need: 36.735 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.332 seconds.
+7332 ms per epoch, Sum: 73.32 s, Actually sum: 44.176, Need: 29.328 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.333 seconds.
+7333 ms per epoch, Sum: 73.33 s, Actually sum: 51.509, Need: 21.999 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.341 seconds.
+7341 ms per epoch, Sum: 73.41 s, Actually sum: 58.85, Need: 14.682 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.335 seconds.
+7335 ms per epoch, Sum: 73.35 s, Actually sum: 66.185, Need: 7.335 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.327 seconds.
+7327 ms per epoch, Sum: 73.27 s, Actually sum: 73.512, Need: 0 s.
+
+
+sum = 50
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.371 seconds.
+7371 ms per epoch, Sum: 73.71 s, Actually sum: 7.371, Need: 66.339 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.327 seconds.
+7327 ms per epoch, Sum: 73.27 s, Actually sum: 14.698, Need: 58.616 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.387 seconds.
+7387 ms per epoch, Sum: 73.87 s, Actually sum: 22.085, Need: 51.709 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.365 seconds.
+7365 ms per epoch, Sum: 73.65 s, Actually sum: 29.45, Need: 44.19 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.331 seconds.
+7331 ms per epoch, Sum: 73.31 s, Actually sum: 36.781, Need: 36.655 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.312 seconds.
+7312 ms per epoch, Sum: 73.12 s, Actually sum: 44.093, Need: 29.248 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.334 seconds.
+7334 ms per epoch, Sum: 73.34 s, Actually sum: 51.427, Need: 22.002 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.331 seconds.
+7331 ms per epoch, Sum: 73.31 s, Actually sum: 58.758, Need: 14.662 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.326 seconds.
+7326 ms per epoch, Sum: 73.26 s, Actually sum: 66.084, Need: 7.326 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.323 seconds.
+7323 ms per epoch, Sum: 73.23 s, Actually sum: 73.407, Need: 0 s.
+
+
+sum = 60
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.367 seconds.
+7367 ms per epoch, Sum: 73.67 s, Actually sum: 7.367, Need: 66.303 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.346 seconds.
+7346 ms per epoch, Sum: 73.46 s, Actually sum: 14.713, Need: 58.768 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.323 seconds.
+7323 ms per epoch, Sum: 73.23 s, Actually sum: 22.036, Need: 51.261 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.325 seconds.
+7325 ms per epoch, Sum: 73.25 s, Actually sum: 29.361, Need: 43.95 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.316 seconds.
+7316 ms per epoch, Sum: 73.16 s, Actually sum: 36.677, Need: 36.58 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.323 seconds.
+7323 ms per epoch, Sum: 73.23 s, Actually sum: 44, Need: 29.292 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.315 seconds.
+7315 ms per epoch, Sum: 73.15 s, Actually sum: 51.315, Need: 21.945 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.316 seconds.
+7316 ms per epoch, Sum: 73.16 s, Actually sum: 58.631, Need: 14.632 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.322 seconds.
+7322 ms per epoch, Sum: 73.22 s, Actually sum: 65.953, Need: 7.322 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.34 seconds.
+7340 ms per epoch, Sum: 73.4 s, Actually sum: 73.293, Need: 0 s.
+
+
+sum = 70
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.481 seconds.
+7481 ms per epoch, Sum: 74.81 s, Actually sum: 7.481, Need: 67.329 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.517 seconds.
+7517 ms per epoch, Sum: 75.17 s, Actually sum: 14.998, Need: 60.136 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.338 seconds.
+7338 ms per epoch, Sum: 73.38 s, Actually sum: 22.337, Need: 51.366 s.
+
+Epoch: 3 started...
+Epoch: 3 completed.
+Time elapsed: 7.345 seconds.
+7345 ms per epoch, Sum: 73.45 s, Actually sum: 29.682, Need: 44.07 s.
+
+Epoch: 4 started...
+Epoch: 4 completed.
+Time elapsed: 7.518 seconds.
+7518 ms per epoch, Sum: 75.18 s, Actually sum: 37.2, Need: 37.59 s.
+
+Epoch: 5 started...
+Epoch: 5 completed.
+Time elapsed: 7.889 seconds.
+7889 ms per epoch, Sum: 78.89 s, Actually sum: 45.089, Need: 31.556 s.
+
+Epoch: 6 started...
+Epoch: 6 completed.
+Time elapsed: 7.486 seconds.
+7486 ms per epoch, Sum: 74.86 s, Actually sum: 52.575, Need: 22.458 s.
+
+Epoch: 7 started...
+Epoch: 7 completed.
+Time elapsed: 7.607 seconds.
+7607 ms per epoch, Sum: 76.07 s, Actually sum: 60.182, Need: 15.214 s.
+
+Epoch: 8 started...
+Epoch: 8 completed.
+Time elapsed: 7.596 seconds.
+7596 ms per epoch, Sum: 75.96 s, Actually sum: 67.778, Need: 7.596 s.
+
+Epoch: 9 started...
+Epoch: 9 completed.
+Time elapsed: 7.678 seconds.
+7678 ms per epoch, Sum: 76.78 s, Actually sum: 75.456, Need: 0 s.
+
+
+sum = 80
+
+Epoch: 0 started...
+Epoch: 0 completed.
+Time elapsed: 7.561 seconds.
+7561 ms per epoch, Sum: 75.61 s, Actually sum: 7.561, Need: 68.049 s.
+
+Epoch: 1 started...
+Epoch: 1 completed.
+Time elapsed: 7.331 seconds.
+7331 ms per epoch, Sum: 73.31 s, Actually sum: 14.892, Need: 58.648 s.
+
+Epoch: 2 started...
+Epoch: 2 completed.
+Time elapsed: 7.33 seconds.
+7330 ms per epoch, Sum: 73.3 s, Actually sum: 22.222, Need: 51.31 s.
+
+Epoch: 3 started...
