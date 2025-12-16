@@ -206,7 +206,7 @@ namespace QANN {
                     os << "Epoch: " << epoch << " completed." << std::endl;
                     os << "Time elapsed: " << double(clock() - start) / CLOCKS_PER_SEC << " seconds." << std::endl;
                     const double dt = double(clock() - start) / CLOCKS_PER_SEC / len * 1000;
-                    os << dt << " ms per epoch, Sum: " << epochs * dt / 1000 << " s, Actually sum: " << double(clock() - st) / CLOCKS_PER_SEC << " Need: " << (epochs - epoch - 1) * dt / 1000 << " s." << std::endl;
+                    os << dt << " ms per epoch, Sum: " << epochs * dt / 1000 << " s, Actually sum: " << double(clock() - st) / CLOCKS_PER_SEC << ", Need: " << (epochs - epoch - 1) * dt / 1000 << " s." << std::endl;
                     os << std::endl;
                 }
             }

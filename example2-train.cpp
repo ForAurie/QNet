@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "QANN"
+#include "QNet.hpp"
 using namespace std;
 
 using Mat = LinearAlgebra::Matrix<float>;
@@ -45,7 +45,7 @@ int main() {
         ann.train(inputs, targets, 10 , learningRate, 1, os);
         ann.save("example2_res.model");
         sum += 10;
-        os << "\nsum = " << sum << endl;
+        os << "\nsum = " << sum << endl << endl;
     }
     // os << "Training completed." << endl;
     return 0;

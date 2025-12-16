@@ -1,4 +1,4 @@
-#include "QANN"
+#include "QNet.hpp"
 #include <iostream>
 #include <vector>
 typedef LinearAlgebra::Matrix<float> Mat;
@@ -11,7 +11,7 @@ template<typename T = float,
          T (*dActFunc)(const T&) = dSigmoid<T>,
          const bool haveBiases = true,
          const bool haveOutputActivation = true>
-ANN(const size_t& __inputSize, const size_t& __outputSize, const std::vector<size_t>& hiddenLayers)
+ANN(const size_t& __inputSize, const size_t& __outputSizNet.hppe, const std::vector<size_t>& hiddenLayers)
  */
 #define os cout
 int main() {
