@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include <fstream>
-#include "QANN"
+#include "QNet.hpp"
 using namespace std;
 using Mat = LinearAlgebra::Matrix<float>;
 #define os cout
