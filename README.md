@@ -2,12 +2,11 @@
 
 ## 前言
 
-本项目依赖于 QMath 项目中的 `LinearAlgebra` 文件。务必保证其处于相应文件夹或手动需改文件 `QANN` 中的相关 `#include`。
+本项目依赖于 QMath 项目中的 `LinearAlgebra` 文件。务必保证其处于相应文件夹或手动需改文件 `QNet.hpp` 中的相关 `#include`。
 
 ## 训练数据
 
 训练数据在 `Data.7z` 中，解压后即可使用。
-
 
 ## 示例
 
