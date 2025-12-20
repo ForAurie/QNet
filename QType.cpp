@@ -23,20 +23,6 @@ double __sigmoid(double x) {
     return 1.0 / (1.0 + std::exp(-x));
 }
 
-    constexpr std::uint16_t init() {
-        std::uint16_t arr[__MASK + 1]{};
-        for (std::size_t i = 0; i <= __MASK; ++i) {
-            arr[i] = i;
-        }
-    }
-
-// constexpr auto __PRESIGMOID[] = {
-//     std::uint16_t arr[__MASK + 1]{};
-//     for (std::size_t i = 0; i <= __MASK; ++i) {
-//         arr[i] = i;
-//     }
-//     return arr;
-// }();
 constexpr auto __PRESIGMOID = [] {
     std::uint16_t arr[__MASK + 1]{};
     for (std::size_t i = 0; i <= __MASK; ++i) {
