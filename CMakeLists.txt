@@ -6,4 +6,4 @@ add_compile_options(-Wextra)
 add_compile_options(-O3)
 
 # include_directories(${PROJECT_SOURCE_DIR}/SomeGoodTemplate)
-add_executable(tmp Luogu/P14598.cpp)
+add_executable(tmp QType.cpp)
