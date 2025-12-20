@@ -27,10 +27,10 @@ void loadData(const string& Path, vector<Mat>& inputs, vector<Mat>& targets) {
 }
 
 int main() {
-    QANN::ANN<float, Mat, QANN::sigmoid, QANN::dSigmoid, true, true> ann(784, 10, {256, 64});
+    QNet::Net<float, Mat, QNet::sigmoid, QNet::dSigmoid, true, true> nn(784, {256, 64, 10});
     os << "Initializing ANN..." << std::endl;
     // ann.init();
-    ann.open("example2.model");
+    nn.open("example2.model");
 
     vector<Mat> inputs, targets;
     os << "Loading training data..." << std::endl;
@@ -42,8 +42,8 @@ int main() {
 	cin >> learningRate; 
 	cout << "training..." << endl;
     while (1) {
-        ann.train(inputs, targets, 10 , learningRate, 1, os);
-        ann.save("example2_res.model");
+        nn.train(inputs, targets, 10, learningRate, 1, os);
+        nn.save("example2_res.model");
         sum += 10;
         os << "\nsum = " << sum << endl << endl;
     }

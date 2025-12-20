@@ -34,12 +34,12 @@ int predict(const Mat& output) {
 
 int main() {
     os << "Loading ANN model..." << endl;
-    QANN::ANN<float, Mat, QANN::sigmoid, QANN::dSigmoid, true, true> ann(784, 10, {256, 64});
+    QNet::Net<float, Mat, QNet::sigmoid, QNet::dSigmoid, true, true> nn(784, {256, 64, 10});
     cout << "Path: ";
 	string Path;
 	cin >> Path;
 	cout << endl;
-	ann.open(Path);
+	nn.open(Path);
 
     os << "Loading Testing data..." << endl;
     vector<Mat> inputs, targets;
@@ -48,7 +48,7 @@ int main() {
     os << "Testing..." << endl;
     int correct = 0;
     for (size_t i = 0; i < inputs.size(); i++) {
-        correct += (predict(ann.forward(inputs[i])) == predict(targets[i]));
+        correct += (predict(nn.forward(inputs[i])) == predict(targets[i]));
     }
     os << "Testing completed." << endl;
     os << "Accuracy: " << correct << " / " << inputs.size() << " = " << (correct * 100.0 / inputs.size()) << "%" << endl;

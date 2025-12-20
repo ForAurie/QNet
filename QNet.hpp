@@ -1,4 +1,4 @@
-#include "LinearAlgebra"
+#include "LinearAlgebra.hpp"
 #include <random>
 #include <iostream>
 #include <utility>
@@ -8,7 +8,7 @@
 #include <cassert>
 #include <cmath>
 #include <ctime>
-namespace QANN {
+namespace QNet {
     template<typename T>
     T randomReal(const T& l, const T& r) {
         static std::random_device rd;
@@ -27,9 +27,8 @@ namespace QANN {
         return E / (t * t);
     }
     template<typename T = float, typename Mat = LinearAlgebra::Matrix<T>, T (*actFunc)(const T&) = sigmoid<T>, T (*dActFunc)(const T&) = dSigmoid<T>, const bool haveBiases = true, const bool haveOutputActivation = true>
-    class ANN {
+    class Net {
     private:
-        size_t inputSize, outputSize;
         std::vector<Mat> weights, biases;
         std::vector<std::pair<Mat, Mat>> __forward(Mat input) const {
             std::vector<std::pair<Mat, Mat>> res;
@@ -50,21 +49,19 @@ namespace QANN {
             return res;
         }
     public:
-        const size_t& getInputSize() const { return inputSize; }
-        const size_t& getOutputSize() const { return outputSize; }
+        size_t getInputSize() const { return weights.front().N(); }
+        size_t getOutputSize() const { return weights.back().M(); }
         std::vector<Mat>& getWeights() { return weights; }
         std::vector<Mat>& getBiases() { return biases; }
         const std::vector<Mat>& getWeights() const { return weights; }
         const std::vector<Mat>& getBiases() const { return biases; }
-        ANN(const size_t& __inputSize, const size_t& __outputSize, const std::vector<size_t>& hiddenLayers): inputSize(__inputSize), outputSize(__outputSize), weights(hiddenLayers.size() + 1), biases(0) {
-            if (haveBiases) biases.resize(hiddenLayers.size() + 1);
-            weights.front().resize(inputSize, hiddenLayers.front());
-            if (haveBiases) biases.front().resize(1, hiddenLayers.front());
-            weights.back().resize(hiddenLayers.back(), outputSize);
-            if (haveBiases) biases.back().resize(1, outputSize);
-            for (size_t i = 1; i < hiddenLayers.size(); ++i) {
-                weights[i].resize(hiddenLayers[i - 1], hiddenLayers[i]);
-                if (haveBiases) biases[i].resize(1, hiddenLayers[i]);
+        Net(size_t inputSize, const std::vector<size_t>& Layers): weights(Layers.size()), biases(0) {
+            if (haveBiases) biases.resize(Layers.size());
+            weights.front().resize(inputSize, Layers.front());
+            if (haveBiases) biases.front().resize(1, Layers.front());
+            for (size_t i = 1; i < Layers.size(); ++i) {
+                weights[i].resize(Layers[i - 1], Layers[i]);
+                if (haveBiases) biases[i].resize(1, Layers[i]);
             }
         }
         Mat forward(Mat input) const {
@@ -89,7 +86,7 @@ namespace QANN {
                     for (size_t j = 0; j < x.M(); ++j)
                         x(i, j) = randomFunc(l, r);
         }
-        void save(const std::string& filename = "QANN.model") const {
+        void save(const std::string& filename) const {
             FILE *fout = fopen(filename.c_str(), "wb");
             char sign = 'Q';
             unsigned int typeSize = sizeof(T);
@@ -98,8 +95,6 @@ namespace QANN {
             bool __haveBiases = haveBiases, __haveOutputActivation = haveOutputActivation;
             fwrite(&__haveBiases, sizeof(bool), 1, fout); // 是否有偏置
             fwrite(&__haveOutputActivation, sizeof(bool), 1, fout); // 是否有输出激活函数
-            fwrite(&inputSize, sizeof(size_t), 1, fout); // 输入层大小
-            fwrite(&outputSize, sizeof(size_t), 1, fout); // 输出层大小
             size_t layers = weights.size(); // 隐藏层加输出层数量
             fwrite(&layers, sizeof(size_t), 1, fout);
             T tmp;
@@ -126,7 +121,7 @@ namespace QANN {
             }
             fclose(fout);
         }
-        void open(const std::string& filename = "QANN.model") {
+        void open(const std::string& filename) {
             FILE *fin = fopen(filename.c_str(), "rb");
             char sign;
             unsigned int typeSize;
@@ -138,8 +133,6 @@ namespace QANN {
             fread(&__haveBiases, sizeof(bool), 1, fin);
             fread(&__haveOutputActivation, sizeof(bool), 1, fin);
             assert(__haveBiases == haveBiases && __haveOutputActivation == haveOutputActivation); // 检查偏置和输出层激活函数一致性
-            fread(&inputSize, sizeof(size_t), 1, fin);
-            fread(&outputSize, sizeof(size_t), 1, fin);
             size_t layers;
             fread(&layers, sizeof(size_t), 1, fin);
             weights.resize(layers);
@@ -198,7 +191,7 @@ namespace QANN {
                                 weights[i](k, j) -= lRate * errors[i](0, j) * output[i - 1].second(0, k);
                     }
                     if (haveBiases) biases.front() -= errors.front() * lRate;
-                    for (size_t j = 0; j < inputSize; j++)
+                    for (size_t j = 0; j < weights.front().N(); j++)
                         for (size_t i = 0; i < weights.front().M(); i++)
                             weights.front()(j, i) -= lRate * errors.front()(0, i) * inputs[id](0, j);
                 }

@@ -6,4 +6,5 @@ add_compile_options(-Wextra)
 add_compile_options(-O3)
 
 # include_directories(${PROJECT_SOURCE_DIR}/SomeGoodTemplate)
-add_executable(tmp QType.cpp)
+# add_executable(main example2-test.cpp)
+# add_executable(main tmp.cpp)
