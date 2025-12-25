@@ -5,7 +5,6 @@
 #include <memory>
 #include <utility>
 #include <algorithm>
-#include <iostream>
 namespace LinearAlgebra {
 	template<typename Type>
 	class Matrix {
@@ -14,13 +13,13 @@ namespace LinearAlgebra {
 		std::unique_ptr<Type[]> data;
 		public:
 		Matrix(): n(0), m(0), data(nullptr) {}
-		Matrix(size_t __n, size_t __m, const Type& x = Type(0)): n(__n), m(__m), data(std::make_unique<Type[]>(__n * __m)) { std::fill_n(data.get(), __n * __m, x); }
+		Matrix(size_t __n, size_t __m, const Type& x = Type()): n(__n), m(__m), data(std::make_unique<Type[]>(__n * __m)) { std::fill_n(data.get(), __n * __m, x); }
 		Matrix(Matrix&& o) noexcept : n(o.n), m(o.m), data(std::move(o.data)) { o.n = o.m = 0; }
 		Matrix& operator=(Matrix&& o) noexcept {
 			if (this != &o) { n = o.n; m = o.m; data = std::move(o.data); o.n = o.m = 0; }
 			return *this;
 		}
-		Matrix& resize(size_t __n, size_t __m, const Type& x = Type(0)) {
+		Matrix& resize(size_t __n, size_t __m, const Type& x = Type()) {
 			n = __n, m = __m; data = std::make_unique<Type[]>(__n * __m);
 			std::fill_n(data.get(), __n * __m, x);
 			return *this;
@@ -177,18 +176,18 @@ namespace LinearAlgebra {
 				if (*ptr != *ptro) return true;
 			return false;
 		}
-		Matrix& applyFunctionSelf(Type (*func)(Type)) { for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr); return *this; }
-		Matrix& applyFunctionSelf(Type (*func)(const Type&)) { for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr); return *this; }
-		Matrix applyFunction(Type (*func)(Type)) const {
+		Matrix& applyFunctionSelf(auto func) { for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr); return *this; }
+		// Matrix& applyFunctionSelf(Type (*func)(const Type&)) { for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr); return *this; }
+		Matrix applyFunction(auto func) const {
 			Matrix res(*this);
 			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr);
 			return res; // RVO
 		}
-		Matrix applyFunction(Type (*func)(const Type&)) const {
-			Matrix res(*this);
-			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr);
-			return res; // RVO
-		}
+		// Matrix applyFunction(Type (*func)(const Type&)) const {
+		// 	Matrix res(*this);
+		// 	for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr);
+		// 	return res; // RVO
+		// }
 		Matrix operator%(const Matrix& o) const {
 			Matrix res(n, m);
 			for (Type *ptr = data.get(), *end = data.get() + n * m, *ptro = o.data.get(), *ptrr = res.data.get(); ptr != end; ++ptr, ++ptro, ++ptrr) *ptrr = *ptr * *ptro;
