@@ -10,4 +10,4 @@
 
 ## 示例
 
-两个示例分别在 `example1.cpp`、`example2-train.cpp & example2-test.cpp`。运行它们之前请确保 `#include` 路径合法且将 `TrainData.txt`、`TestData.txt` 置于同一文件夹内。 特别的，`example2.model` 是已经训练好的第二个示例的模型，正确率约 $95\%$。
+两个示例分别在 `example1.cpp`、`example2-train.cpp & example2-test.cpp`。运行它们之前请确保 `#include` 路径合法且将 `TrainData.txt`、`TestData.txt` 置于同一文件夹内。 特别的，`example2.model` 是已经训练好的第二个示例的模型，正确率约 $95$ %。
