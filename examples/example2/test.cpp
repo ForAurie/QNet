@@ -4,7 +4,7 @@
 #include <fstream>
 #include "QNet.hpp"
 using namespace std;
-using Mat = LinearAlgebra::Matrix<float>;
+using Mat = QMath::Matrix<float>;
 #define os cout
 
 void loadData(const string& Path, vector<Mat>& inputs, vector<Mat>& targets) {
@@ -35,15 +35,15 @@ int predict(const Mat& output) {
 int main() {
     os << "Loading ANN model..." << endl;
     QNet::Net<float, Mat, QNet::sigmoid, QNet::dSigmoid, true, true> nn(784, {256, 64, 10});
-    cout << "Path: ";
-	string Path;
-	cin >> Path;
-	cout << endl;
+    // cout << "Path: ";
+	string Path = "../examples/example2/model.model";
+	// cin >> Path;
+	// cout << endl;
 	nn.open(Path);
 
     os << "Loading Testing data..." << endl;
     vector<Mat> inputs, targets;
-    loadData(".\\TestData.txt", inputs, targets);
+    loadData("../examples/example2/testData.txt", inputs, targets);
 
     os << "Testing..." << endl;
     int correct = 0;
@@ -52,6 +52,7 @@ int main() {
     }
     os << "Testing completed." << endl;
     os << "Accuracy: " << correct << " / " << inputs.size() << " = " << (correct * 100.0 / inputs.size()) << "%" << endl;
+    os << "finished." << endl;
     int tmp; while (cin >> tmp);
     return 0;
 }

@@ -1,3 +1,4 @@
+/*
                                  Apache License
                            Version 2.0, January 2004
                         http://www.apache.org/licenses/
@@ -188,3 +189,243 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+*/
+#ifndef QMATH_LINEARALGEBRA_H
+#define QMATH_LINEARALGEBRA_H
+
+#include <vector>
+#include <cassert>
+#include <cmath>
+#include <iostream>
+#include <memory>
+#include <utility>
+#include <algorithm>
+namespace QMath {
+	template <typename Type>
+	class Matrix {
+		private:
+		size_t n, m;
+		std::unique_ptr<Type[]> data;
+		public:
+		constexpr Matrix(): n(0), m(0), data(nullptr) {}
+		constexpr Matrix(size_t __n, size_t __m, const Type& x = Type()): n(__n), m(__m), data(nullptr) {
+			if (__n > 0 && __m > 0) {
+				data = std::make_unique<Type[]>(__n * __m);
+				std::fill_n(data.get(), __n * __m, x);
+			}
+		}
+		Matrix(const std::vector<std::vector<Type>>& x): n(x.size()), m(x.front().size()), data(nullptr) {
+			if (n == 0 || m == 0) return;
+			data = std::make_unique<Type[]>(n * m);
+			for (size_t i = 0; i < n; ++i)
+				for (size_t j = 0; j < m; ++j)
+					data[i * m + j] = x[i][j];
+		}
+		Matrix(const Matrix& o): n(o.n), m(o.m), data(nullptr) {
+			if (o.data == nullptr || n == 0 || m == 0) {
+				n = o.n; m = o.m; data = nullptr;
+				return;
+			}
+			data = std::make_unique<Type[]>(n * m);
+			for (Type *ptr = o.data.get(), *end = o.data.get() + n * m, *ptrr = data.get(); ptr != end; ++ptr, ++ptrr) *ptrr = *ptr;
+		}
+		Matrix(Matrix&& o) noexcept: n(o.n), m(o.m), data(std::move(o.data)) { o.n = 0; o.m = 0; }
+		Matrix& operator=(const Matrix& o) { 
+			if (this != &o) {
+				if (o.data == nullptr || o.n == 0 || o.m == 0) {
+					n = o.n; m = o.m; data = nullptr;
+					return *this;
+				}
+				n = o.n; m = o.m; data = std::make_unique<Type[]>(n * m);
+				for (Type *ptr = o.data.get(), *end = o.data.get() + n * m, *ptrr = data.get(); ptr != end; ++ptr, ++ptrr) *ptrr = *ptr;
+			}
+			return *this;
+		}
+		Matrix& operator=(const std::vector<std::vector<Type>>& o) {
+			n = o.size(); m = o.front().size();
+			if (n == 0 || m == 0) { data = nullptr; return *this; }
+			data = std::make_unique<Type[]>(n * m);
+			for (size_t i = 0; i < n; ++i)
+				for (size_t j = 0; j < m; ++j)
+					data[i * m + j] = o[i][j];
+			return *this;
+		}
+		Matrix& operator=(Matrix&& o) noexcept {
+			if (this != &o) {
+				n = o.n; m = o.m; data = std::move(o.data);
+				o.n = 0; o.m = 0;
+			}
+			return *this;
+		}
+		Matrix& assgin(size_t __n, size_t __m, const Type& x = Type()) {
+			n = __n, m = __m; 
+			if (__n == 0 || __m == 0) data = nullptr;
+			else {
+				data = std::make_unique<Type[]>(__n * __m);
+				std::fill_n(data.get(), __n * __m, x);
+			}
+			return *this;
+		}
+		Matrix& resize(size_t __n, size_t __m, const Type& x = Type()) {
+			if (__n == 0 || __m == 0) n = __n, m = __m, data = nullptr;
+			else {
+				auto ndata = std::make_unique<Type[]>(__n * __m);
+				for (size_t i = 0; i < __n; ++i) {
+					for (size_t j = 0; j < __m; ++j) {
+						if (i < n && j < m) ndata[i * __m + j] = data[i * m + j];
+						else ndata[i * __m + j] = x;
+					}
+				}
+				n = __n, m = __m;
+				data = std::move(ndata);
+			}
+			return *this;
+		}
+		Type* operator[](size_t row) { return data.get() + row * m; }
+		const Type* operator[](size_t row) const { return data.get() + row * m; }
+
+		size_t N() const { return n; }
+		size_t M() const { return m; }
+		Type& operator () (size_t row, size_t col) { return data[row * m + col]; }
+		const Type& operator () (size_t row, size_t col) const { return data[row * m + col]; }
+		Matrix transpose() const {
+			Matrix res(m, n);
+			Type* src_row = data.get();
+			for (size_t i = 0; i < n; ++i, src_row += m) {
+				Type* dst = res.data.get() + i;
+				Type* src = src_row;
+				for (size_t j = 0; j < m; ++j, ++src, dst += n) {
+					*dst = *src;
+				}
+			}
+			return res; // RVO
+		}
+		Matrix& transposeSelf() {
+			Matrix res(m, n);
+			Type* src_row = data.get();
+			for (size_t i = 0; i < n; ++i, src_row += m) {
+				Type* dst = res.data.get() + i;
+				Type* src = src_row;
+				for (size_t j = 0; j < m; ++j, ++src, dst += n) {
+					*dst = *src;
+				}
+			}
+			return *this = std::move(res);
+		}
+
+		Matrix& operator *= (const Matrix& o) {
+			Matrix res(n, o.m);
+			Type *ptr = data.get();
+			for (size_t i = 0; i < n; ++i) {
+				Type *ptro = o.data.get();
+				for (size_t k = 0; k < m; ++k, ++ptr) {
+					Type tmp = *ptr;
+					Type *ptrr = res.data.get() + i * o.m;
+					for (size_t j = 0; j < o.m; ++j, ++ptro, ++ptrr) {
+						*ptrr += tmp * *ptro;
+					}
+				}
+			}
+			return *this = std::move(res);
+		}
+		Matrix operator * (const Matrix& o) const {
+			Matrix res(n, o.m);
+			Type *ptr = data.get();
+			for (size_t i = 0; i < n; ++i) {
+				Type *ptro = o.data.get();
+				for (size_t k = 0; k < m; ++k, ++ptr) {
+					Type tmp = *ptr;
+					Type *ptrr = res.data.get() + i * o.m;
+					for (size_t j = 0; j < o.m; ++j, ++ptro, ++ptrr) {
+						*ptrr += tmp * *ptro;
+					}
+				}
+			}
+			return res; // RVO
+		}
+		Matrix& operator += (const Matrix& o) {
+			for (Type *ptr = data.get(), *end = data.get() + n * m, *ptro = o.data.get(); ptr != end; ++ptr, ++ptro) *ptr += *ptro;
+			return *this;
+		}
+		Matrix operator+(const Matrix& o) const {
+			Matrix res(*this);
+			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m, *ptro = o.data.get(); ptr != end; ++ptr, ++ptro) *ptr += *ptro;
+			return res; // RVO
+		}
+		Matrix& operator -= (const Matrix& o) {
+			for (Type *ptr = data.get(), *end = data.get() + n * m, *ptro = o.data.get(); ptr != end; ++ptr, ++ptro) *ptr -= *ptro;
+			return *this;
+		}
+		Matrix operator - (const Matrix& o) const {
+			Matrix res(*this);
+			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m, *ptro = o.data.get(); ptr != end; ++ptr, ++ptro) *ptr -= *ptro;
+			return res; // RVO
+		}
+		Matrix& operator *= (const Type& o) {
+			for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr *= o;
+			return *this;
+		}
+		Matrix operator * (const Type& o) const {
+			Matrix res(*this);
+			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr *= o;
+			return res; // RVO
+		}
+		Matrix& operator += (const Type &o) {
+			for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr += o;
+			return *this;
+		}
+		Matrix operator + (const Type &o) const {
+			Matrix res(*this);
+			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr += o;
+			return res; // RVO
+		}
+		Matrix& operator -= (const Type &o) {
+			for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr -= o;
+			return *this;
+		}
+		Matrix operator - (const Type &o) const {
+			Matrix res(*this);
+			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr -= o;
+			return res; // RVO
+		}
+		bool operator == (const Matrix& o) const {
+			if (n != o.n || m != o.m) return false;
+			if (data == o.data) return true;
+			if (data == nullptr || o.data == nullptr) return false;
+			for (Type *ptr = data.get(), *end = data.get() + n * m, *ptro = o.data.get(); ptr != end; ++ptr, ++ptro)
+				if (*ptr != *ptro) return false;
+			return true;
+		}
+		bool operator != (const Matrix& o) const {
+			if (n != o.n || m != o.m) return true;
+			if (data == o.data) return false;
+			if (data == nullptr || o.data == nullptr) return true;
+			for (Type *ptr = data.get(), *end = data.get() + n * m, *ptro = o.data.get(); ptr != end; ++ptr, ++ptro)
+				if (*ptr != *ptro) return true;
+			return false;
+		}
+		Matrix& applyFunctionSelf(Type (*func)(Type)) { for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr); return *this; }
+		Matrix& applyFunctionSelf(Type (*func)(const Type&)) { for (Type *ptr = data.get(), *end = data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr); return *this; }
+		Matrix applyFunction(Type (*func)(Type)) const {
+			Matrix res(*this);
+			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr);
+			return res; // RVO
+		}
+		Matrix applyFunction(Type (*func)(const Type&)) const {
+			Matrix res(*this);
+			for (Type *ptr = res.data.get(), *end = res.data.get() + n * m; ptr != end; ++ptr) *ptr = func(*ptr);
+			return res; // RVO
+		}
+		Matrix operator%(const Matrix& o) const {
+			Matrix res(n, m);
+			for (Type *ptr = data.get(), *end = data.get() + n * m, *ptro = o.data.get(), *ptrr = res.data.get(); ptr != end; ++ptr, ++ptro, ++ptrr) *ptrr = *ptr * *ptro;
+			return res; // RVO
+		}
+		Matrix& operator%=(const Matrix& o) {
+			for (Type *ptr = data.get(), *end = data.get() + n * m, *ptro = o.data.get(); ptr != end; ++ptr, ++ptro) *ptr *= *ptro;
+			return *this;
+		}
+	};
+}
+
+#endif

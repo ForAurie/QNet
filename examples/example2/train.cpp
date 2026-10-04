@@ -5,10 +5,10 @@
 #include "QNet.hpp"
 using namespace std;
 
-using Mat = LinearAlgebra::Matrix<float>;
+using Mat = QMath::Matrix<float>;
 
-// #define os cout
-ofstream os("train.log");
+#define os cout
+// ofstream os("train.log");
 void loadData(const string& Path, vector<Mat>& inputs, vector<Mat>& targets) {
     ifstream fin(Path);
     int tmp;
@@ -30,23 +30,29 @@ int main() {
     QNet::Net<float, Mat, QNet::sigmoid, QNet::dSigmoid, true, true> nn(784, {256, 64, 10});
     os << "Initializing ANN..." << std::endl;
     // ann.init();
-    nn.open("example2.model");
+    nn.open("../examples/example2/model.model");
 
     vector<Mat> inputs, targets;
     os << "Loading training data..." << std::endl;
-    loadData(".\\TrainData.txt", inputs, targets);
+    loadData("../examples/example2/trainData.txt", inputs, targets);
     os << "Training..." << std::endl;
     size_t sum = 0;
     double learningRate;
-	cout << "learningRate: ";
+	os << "learningRate: ";
 	cin >> learningRate; 
-	cout << "training..." << endl;
-    while (1) {
-        nn.train(inputs, targets, 10, learningRate, 1, os);
-        nn.save("example2_res.model");
-        sum += 10;
-        os << "\nsum = " << sum << endl << endl;
+    os << "Epochs: ";
+    size_t epochs;
+    cin >> epochs;
+	os << "training..." << endl;
+    nn.train(inputs, targets, epochs, learningRate, 1, os);
+    os << "Training completed. Do you want to save the model? (y/n): ";
+    char ch;
+    cin >> ch;
+    if (ch == 'y' || ch == 'Y') {
+        os << "Saving model..." << endl;
+        nn.save("../examples/example2/model.model");
+        os << "Model saved." << endl;
     }
-    // os << "Training completed." << endl;
+    else os << "Model not saved." << endl;
     return 0;
 }
